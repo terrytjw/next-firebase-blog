@@ -1,6 +1,9 @@
 import React from "react";
 
-const Loading = () => {
+type LoadingProps = {
+  message?: string;
+};
+const Loading = ({ message }: LoadingProps) => {
   return (
     <div className="flex flex-col items-center">
       <div className="flex space-x-2">
@@ -84,9 +87,11 @@ const Loading = () => {
           </svg>
         </div>
       </div>
-      <h1 className="p-4 italic text-gray-600 text-xl font-bold tracking-widest">
-        Yeet...
-      </h1>
+      {message && (
+        <h1 className="p-4 italic text-gray-600 text-xl font-bold tracking-widest">
+          {message}
+        </h1>
+      )}
     </div>
   );
 };

@@ -1,5 +1,13 @@
 import { initializeApp, getApp } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import {
+  collection,
+  DocumentSnapshot,
+  getDocs,
+  getFirestore,
+  limit,
+  query,
+  where,
+} from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 
@@ -35,15 +43,30 @@ export const STATE_CHANGED = "state_changed";
 
 /********************* Helper functions **********************/
 /**`
+ * Gets a users/{uid} document with username
+ * @param  {string} username
+ */
+export async function getUserWithUsername(username: string) {
+  const q = query(
+    collection(firestore, "users"),
+    where("username", "==", username),
+    limit(1)
+  );
+  const userDoc = (await getDocs(q)).docs[0];
+
+  return userDoc;
+}
+
+/**`
  * Converts a firestore document to JSON
  * @param  {DocumentSnapshot} doc
  */
-export function docToJSON(doc: any) {
+export function docToJSON(doc: DocumentSnapshot) {
   const data = doc.data({ serverTimestamps: "estimate" });
   return {
     ...data,
     // Example of a Gotcha: firestore timestamp NOT serializable to JSON. Must convert to milliseconds. References to other documents are also not serializable.
-    // createdAt: data?.createdAt.toMillis() || 0,
-    // updatedAt: data?.updatedAt.toMillis() || 0,
+    createdAt: data?.createdAt.toMillis() || 0,
+    updatedAt: data?.updatedAt.toMillis() || 0,
   };
 }

@@ -10,14 +10,10 @@ import Image from "next/image";
 const Navbar = () => {
   const { user, username, loading } = useContext(UserContext);
 
-  const router = useRouter();
-
   const handleSignout = () => {
     signOut(auth);
     // router.reload();
   };
-
-  console.log("loading -> ", loading);
 
   return (
     <div className="navbar px-6 bg-base-100">
