@@ -1,11 +1,12 @@
 import { signOut } from "firebase/auth";
 import Link from "next/link";
 import { useRouter } from "next/router";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { UserContext } from "../lib/context";
 import { auth } from "../lib/firebase";
 import CustomLink from "./CustomLink";
 import Image from "next/image";
+import Toggle from "./Toggle";
 
 const Navbar = () => {
   const { user, username, loading } = useContext(UserContext);
@@ -26,6 +27,7 @@ const Navbar = () => {
         <div className="h-8 w-40 bg-slate-600 rounded-lg animate-pulse" />
       ) : user ? (
         <div className="flex">
+          <Toggle />
           <button
             className="btn btn-sm mx-2 hover:bg-gray-500 hover:border-gray-500"
             onClick={() => alert("Write post.")}
