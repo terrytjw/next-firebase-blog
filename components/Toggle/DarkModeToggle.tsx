@@ -14,7 +14,7 @@ const DarkModeToggle = () => {
     if (
       localStorage.theme === "dark" ||
       (!("theme" in localStorage) &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches)
+        window.matchMedia("(prefers-color-scheme: dark)").matches) // using the Window.matchMeida() api to check the OS theme
     ) {
       setEnabled(true);
     }
