@@ -5,8 +5,19 @@ import { MdDarkMode, MdLightMode } from "react-icons/md";
 
 const DarkModeToggle = () => {
   const [enabled, setEnabled] = useState(false);
+
   useEffect(() => {
     themeChange(false);
+  }, []);
+
+  useEffect(() => {
+    if (
+      localStorage.theme === "dark" ||
+      (!("theme" in localStorage) &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches)
+    ) {
+      setEnabled(true);
+    }
   }, []);
 
   return (
