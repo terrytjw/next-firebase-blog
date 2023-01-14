@@ -6,7 +6,7 @@ import { UserContext } from "../lib/context";
 import { auth } from "../lib/firebase";
 import CustomLink from "./CustomLink";
 import Image from "next/image";
-import Toggle from "./Toggle";
+import DarkModeToggle from "./Toggle/DarkModeToggle";
 
 const Navbar = () => {
   const { user, username, loading } = useContext(UserContext);
@@ -23,7 +23,7 @@ const Navbar = () => {
           N F B
         </CustomLink>
       </div>
-      <Toggle />
+      <DarkModeToggle />
       {loading ? (
         <div className="h-8 w-40 bg-slate-600 rounded-lg animate-pulse" />
       ) : user ? (

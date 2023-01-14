@@ -3,8 +3,7 @@ import { Switch } from "@headlessui/react";
 import { themeChange } from "theme-change";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
 
-type ToggleProps = {};
-const Toggle = () => {
+const DarkModeToggle = () => {
   const [enabled, setEnabled] = useState(false);
   useEffect(() => {
     themeChange(false);
@@ -19,10 +18,10 @@ const Toggle = () => {
             className={`${
               checked ? "bg-gray-600" : "bg-gray-200"
             } relative inline-flex h-6 w-11 items-center rounded-full`}
-            data-toggle-theme="light,dark"
+            data-set-theme={enabled ? "light" : "dark"}
             data-act-class="ACTIVECLASS"
           >
-            <span className="sr-only">Enable notifications</span>
+            <span className="sr-only">Toggle dark mode</span>
             <span
               className={`${
                 checked ? "translate-x-6" : "translate-x-1"
@@ -35,4 +34,4 @@ const Toggle = () => {
   );
 };
 
-export default Toggle;
+export default DarkModeToggle;
