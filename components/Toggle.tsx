@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import { Switch } from "@headlessui/react";
 import { themeChange } from "theme-change";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
@@ -13,20 +13,23 @@ const Toggle = () => {
   return (
     <div className="flex space-x-2 items-center">
       <div>{enabled ? <MdDarkMode /> : <MdLightMode />}</div>
-      <Switch
-        checked={enabled}
-        onChange={setEnabled}
-        className={`${enabled ? "bg-teal-900" : "bg-teal-600"}
-          relative inline-flex h-5 w-10 shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75`}
-        data-toggle-theme="light,dark"
-        data-act-class="ACTIVECLASS"
-      >
-        <span className="sr-only">Use setting</span>
-        <span
-          aria-hidden="true"
-          className={`${enabled ? "translate-x-5" : "translate-x-0"}
-            pointer-events-none inline-block h-4 w-4 transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out`}
-        />
+      <Switch checked={enabled} onChange={setEnabled} as={Fragment}>
+        {({ checked }) => (
+          <button
+            className={`${
+              checked ? "bg-gray-600" : "bg-gray-200"
+            } relative inline-flex h-6 w-11 items-center rounded-full`}
+            data-toggle-theme="light,dark"
+            data-act-class="ACTIVECLASS"
+          >
+            <span className="sr-only">Enable notifications</span>
+            <span
+              className={`${
+                checked ? "translate-x-6" : "translate-x-1"
+              } inline-block h-4 w-4 transform rounded-full bg-white transition`}
+            />
+          </button>
+        )}
       </Switch>
     </div>
   );
