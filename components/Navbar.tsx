@@ -23,11 +23,11 @@ const Navbar = () => {
           N F B
         </CustomLink>
       </div>
+      <Toggle />
       {loading ? (
         <div className="h-8 w-40 bg-slate-600 rounded-lg animate-pulse" />
       ) : user ? (
         <div className="flex">
-          <Toggle />
           <button
             className="btn btn-sm mx-2 hover:bg-gray-500 hover:border-gray-500"
             onClick={() => alert("Write post.")}
