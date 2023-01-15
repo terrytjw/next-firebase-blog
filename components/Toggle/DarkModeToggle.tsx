@@ -1,35 +1,27 @@
-import { Fragment, useEffect, useState } from "react";
+import { Fragment, useContext, useEffect, useState } from "react";
 import { Switch } from "@headlessui/react";
 import { themeChange } from "theme-change";
 import { MdDarkMode, MdLightMode } from "react-icons/md";
+import { ThemeContext } from "../../lib/context";
 
 const DarkModeToggle = () => {
-  const [enabled, setEnabled] = useState(false);
+  const { theme, toggleTheme } = useContext(ThemeContext);
+  const darkModeEnabled = theme === "dark";
 
   useEffect(() => {
     themeChange(false);
   }, []);
 
-  useEffect(() => {
-    if (
-      localStorage.theme === "dark" ||
-      (!("theme" in localStorage) &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches) // using the Window.matchMeida() api to check the OS theme
-    ) {
-      setEnabled(true);
-    }
-  }, []);
-
   return (
     <div className="flex space-x-2 items-center">
-      <div>{enabled ? <MdDarkMode /> : <MdLightMode />}</div>
-      <Switch checked={enabled} onChange={setEnabled} as={Fragment}>
+      <div>{darkModeEnabled ? <MdDarkMode /> : <MdLightMode />}</div>
+      <Switch checked={darkModeEnabled} onChange={toggleTheme} as={Fragment}>
         {({ checked }) => (
           <button
             className={`${
               checked ? "bg-gray-600" : "bg-gray-200"
             } relative inline-flex h-6 w-11 items-center rounded-full`}
-            data-set-theme={enabled ? "light" : "dark"}
+            data-set-theme={darkModeEnabled ? "light" : "dark"}
             data-act-class="ACTIVECLASS"
           >
             <span className="sr-only">Toggle dark mode</span>

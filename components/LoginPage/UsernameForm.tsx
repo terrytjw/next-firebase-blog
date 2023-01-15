@@ -21,7 +21,7 @@ const UsernameForm = () => {
     const userDoc = doc(getFirestore(), "users", user.uid);
     const usernameDoc = doc(getFirestore(), "usernames", formValue);
 
-    // Commit both docs together as a batch write.
+    // Commit both docs together as a batch write. If either one operation fails, both fail and no changes are made to the database
     const batch = writeBatch(getFirestore());
     batch.set(userDoc, {
       username: formValue,

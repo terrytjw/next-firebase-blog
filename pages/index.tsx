@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import type { NextPage } from "next";
 import Head from "next/head";
 import {
@@ -16,13 +16,29 @@ import { docToJSON } from "../lib/firebase";
 import PostFeed from "../components/PostFeed";
 import Metatags from "../components/Metatags";
 import Loading from "../components/Loading";
+import { Autosave } from "react-autosave";
 
 const LIMIT = 1;
+export const LOCAL_STORAGE_KEY = "react-autosave";
 
 const HomePage: NextPage = ({ posts }: any) => {
   const [latestPosts, setLatestPosts] = useState(posts); // need this because we want to fetch additional posts via client-side later
   const [loading, setLoading] = useState(false);
   const [postsEnd, setPostsEnd] = useState(false);
+
+  const [blogText, setBlogText] = useState(() => {
+    if (typeof window !== "undefined") {
+      return {
+        name: localStorage.getItem(LOCAL_STORAGE_KEY) ?? "",
+      };
+    } else {
+      return { name: "" };
+    }
+  });
+  // save to local storage, can replace to writing to db in the future
+  const updateBlog = (data: string) => {
+    localStorage.setItem(LOCAL_STORAGE_KEY, data);
+  };
 
   // Get next page in pagination query
   const getMorePosts = async () => {
@@ -85,6 +101,26 @@ const HomePage: NextPage = ({ posts }: any) => {
           {loading && <Loading />}
           {postsEnd && "You have reached the end!"}
         </div>
+        <div className="mt-20">
+          <label
+            htmlFor="email"
+            className="block text-sm font-medium text-gray-700 dark:text-gray-400"
+          >
+            React Autosave Demo
+          </label>
+          <div className="mt-1">
+            <input
+              type="email"
+              name="email"
+              id="email"
+              className="block p-2 w-1/3 rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
+              value={blogText?.name}
+              placeholder="you@example.com"
+              onChange={(e) => setBlogText({ name: e.target.value })}
+            />
+          </div>
+        </div>
+        <Autosave data={blogText?.name} onSave={updateBlog} />
       </main>
     </div>
   );
