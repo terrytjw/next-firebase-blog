@@ -20,6 +20,7 @@
     "lodash": "^4.17.21",
     "next": "^13.1.0",
     "react": "^18.2.0",
+    "react-autosave": "^0.4.2",
     "react-dom": "^18.2.0",
     "react-firebase-hooks": "^5.1.1",
     "react-hook-form": "^7.41.5",
