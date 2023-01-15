@@ -1,4 +1,4 @@
-# A Typescript + Tailwind Next.js template
+# A Typescript + Tailwind Next.js blog with Firebase backend
 
 ## Getting Started
 
