@@ -15,7 +15,7 @@ const PostItem = ({ post, admin = false }: PostItemProps) => {
     <div className="flex justify-center">
       <Link
         href={`/${post.username}/${post.slug}`}
-        className="py-2 w-1/3 group cursor-pointer"
+        className="py-4 w-1/3 group cursor-pointer"
       >
         <div className="card w-full bg-stone-100 group-hover:bg-stone-200/70 border border-stone-200 shadow-md shadow-stone-100 transition-all">
           <div className="card-body">
@@ -34,19 +34,21 @@ const PostItem = ({ post, admin = false }: PostItemProps) => {
 
       {/* If admin view, show extra controls for user */}
       {admin && (
-        <>
+        <div className="flex items-center gap-x-2 ml-4 relative">
           <Link href={`/admin/${post.slug}`}>
-            <h3>
-              <button className="btn-blue">Edit</button>
-            </h3>
+            <button className="btn btn-sm">Edit</button>
           </Link>
 
           {post.published ? (
-            <p className="text-success">Live</p>
+            <p className="text-success text-sm absolute left-1 bottom-12 px-2 py-1 bg-green-300/10 rounded-lg">
+              Live
+            </p>
           ) : (
-            <p className="text-danger">Unpublished</p>
+            <p className="text-error text-sm absolute left-1 bottom-12 px-2 py-1 bg-red-300/10 rounded-lg">
+              Unpublished
+            </p>
           )}
-        </>
+        </div>
       )}
     </div>
   );

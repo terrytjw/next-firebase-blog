@@ -17,6 +17,7 @@ import PostFeed from "../components/PostFeed";
 import Metatags from "../components/Metatags";
 import Loading from "../components/Loading";
 import { Autosave } from "react-autosave";
+import toast from "react-hot-toast";
 
 const LIMIT = 1;
 export const LOCAL_STORAGE_KEY = "react-autosave";
@@ -38,6 +39,7 @@ const HomePage: NextPage = ({ posts }: any) => {
   // save to local storage, can replace to writing to db in the future
   const updateBlog = (data: string) => {
     localStorage.setItem(LOCAL_STORAGE_KEY, data);
+    toast.success("progress autosaved!");
   };
 
   // Get next page in pagination query

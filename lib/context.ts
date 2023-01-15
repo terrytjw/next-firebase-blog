@@ -12,5 +12,5 @@ export const UserContext = createContext<User>({
 });
 
 export type Theme = "light" | "dark";
-type ThemeContext = { theme: Theme; toggleTheme: () => void };
+export type ThemeContext = { theme: Theme; toggleTheme: () => void };
 export const ThemeContext = createContext<ThemeContext>({} as ThemeContext);
