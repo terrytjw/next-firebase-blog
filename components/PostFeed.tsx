@@ -36,15 +36,21 @@ const PostItem = ({ post, admin = false }: PostItemProps) => {
       {admin && (
         <div className="flex items-center gap-x-2 ml-4 relative">
           <Link href={`/admin/${post.slug}`}>
-            <button className="btn btn-sm">Edit</button>
+            <button className="btn btn-sm btn-outline">Edit</button>
           </Link>
 
           {post.published ? (
-            <p className="text-success text-sm absolute left-1 bottom-12 px-2 py-1 bg-green-300/10 rounded-lg">
+            <p
+              className="tooltip tooltip-right tooltip-accent text-success text-sm absolute left-1 bottom-12 px-2 py-1 bg-green-300/10 rounded-lg"
+              data-tip="This article is viewable by the public."
+            >
               Live
             </p>
           ) : (
-            <p className="text-error text-sm absolute left-1 bottom-12 px-2 py-1 bg-red-300/10 rounded-lg">
+            <p
+              className="tooltip tooltip-right tooltip-error text-error text-sm absolute left-1 bottom-12 px-2 py-1 bg-red-300/10 rounded-lg"
+              data-tip="This article is not yet published."
+            >
               Unpublished
             </p>
           )}

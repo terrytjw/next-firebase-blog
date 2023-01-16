@@ -13,6 +13,7 @@
     "@formkit/auto-animate": "^1.0.0-beta.5",
     "@headlessui/react": "^1.7.7",
     "@heroicons/react": "^2.0.13",
+    "@hookform/error-message": "^2.0.1",
     "axios": "^1.2.1",
     "daisyui": "^2.46.1",
     "date-fns": "^2.29.3",
@@ -32,6 +33,7 @@
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.3",
+    "@tailwindcss/typography": "^0.5.9",
     "@types/lodash": "^4.14.191",
     "@types/node": "^18.11.17",
     "@types/react": "^18.0.26",

@@ -28,12 +28,12 @@ const Navbar = () => {
         <div className="h-8 w-40 bg-slate-600 rounded-lg animate-pulse" />
       ) : user ? (
         <div className="flex">
-          <button
+          <Link
+            href="/admin"
             className="btn btn-sm mx-2 hover:bg-gray-500 hover:border-gray-500"
-            onClick={() => alert("Write post.")}
           >
-            Write post
-          </button>
+            Manage posts
+          </Link>
           <div className="dropdown dropdown-end">
             <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
               <div className="w-10 rounded-full">

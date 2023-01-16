@@ -42,12 +42,12 @@ const PostPage: NextPage = ({ post, path }: any) => {
             }
           >
             {/* <HeartButton postRef={postRef} /> */}
-            <button className="btn">Heart</button>
+            <button className="btn btn-secondary">Heart</button>
           </AuthCheck>
 
           {currentUser?.uid === latestPost.uid && (
             <Link href={`/admin/${latestPost.slug}`}>
-              <button className="">Edit Post</button>
+              <button className="btn btn-outline">Edit Post</button>
             </Link>
           )}
           <p className="ml-auto">{latestPost.heartCount || 0} 🤍</p>

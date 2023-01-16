@@ -22,7 +22,9 @@ const PostContent = ({ post }: PostContentProps) => {
         {createdAt.toDateString()}
       </div>
       <div className="py-2">
-        <ReactMarkdown>{post?.content}</ReactMarkdown>
+        <ReactMarkdown className="prose prose-slate">
+          {post?.content}
+        </ReactMarkdown>
       </div>
     </div>
   );
