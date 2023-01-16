@@ -9,18 +9,12 @@ import Image from "next/image";
 import { useRouter } from "next/router";
 
 const LoginPage: NextPage = () => {
+  const router = useRouter();
   const { user, username, loading } = useContext(UserContext);
 
   const SignInButton = () => {
-    const router = useRouter();
-
     const signInWithGoogle = async () => {
       await signInWithPopup(auth, googleAuthProvider);
-
-      // need to check if user has a username before redirecting
-      if (username) {
-        router.push("/");
-      }
     };
 
     return (
@@ -49,7 +43,7 @@ const LoginPage: NextPage = () => {
   };
 
   const SignOutButton = () => (
-    <button className="btn" onClick={() => signOut(auth)}>
+    <button className="btn btn-outline btn-error" onClick={() => signOut(auth)}>
       Sign Out
     </button>
   );
@@ -110,7 +104,12 @@ const LoginPage: NextPage = () => {
         !username ? (
           <UsernameForm />
         ) : (
-          <SignOutButton />
+          <div className="flex gap-x-2">
+            <button className="btn" onClick={() => router.back()}>
+              Back to page
+            </button>
+            <SignOutButton />
+          </div>
         )
       ) : (
         <SignInButton />

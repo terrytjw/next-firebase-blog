@@ -16,6 +16,7 @@ import PostContent from "../../components/PostContent";
 import { UserContext } from "../../lib/context";
 import { docToJSON, getUserWithUsername } from "../../lib/firebase";
 import { useDocumentData } from "react-firebase-hooks/firestore";
+import HeartButton from "../../components/HeartButton";
 
 // Public facing post page of a specific user
 const PostPage: NextPage = ({ post, path }: any) => {
@@ -37,12 +38,12 @@ const PostPage: NextPage = ({ post, path }: any) => {
           <AuthCheck
             fallback={
               <Link href="/login">
-                <button>💗 Sign Up</button>
+                <button className="btn btn-outline">💗 Login</button>
               </Link>
             }
           >
-            {/* <HeartButton postRef={postRef} /> */}
-            <button className="btn btn-secondary">Heart</button>
+            <HeartButton postRef={postRef} />
+            {/* <button className="btn btn-secondary">Heart</button> */}
           </AuthCheck>
 
           {currentUser?.uid === latestPost.uid && (

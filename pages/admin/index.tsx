@@ -29,6 +29,9 @@ export default function AdminPostsPage(props: any) {
 }
 
 function PostList() {
+  if (!auth.currentUser) {
+    return null;
+  }
   const ref = collection(
     getFirestore(),
     "users",

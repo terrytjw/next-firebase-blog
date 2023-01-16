@@ -8,5 +8,14 @@ export default function AuthCheck({ children, fallback }: any) {
 
   return username
     ? children
-    : fallback || <Link href="/login">You must be signed in</Link>;
+    : fallback || (
+        <div className="flex flex-col justify-center items-center h-screen">
+          <h1 className="p-4 text-xl font-bold">
+            Please login to access this page.
+          </h1>
+          <Link href="/login" className="btn btn-outline">
+            Login
+          </Link>
+        </div>
+      );
 }

@@ -14,7 +14,6 @@ import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import toast from "react-hot-toast";
 import ReactMarkdown from "react-markdown";
-import "highlight.js/styles/github.css";
 import AuthCheck from "../../components/AuthCheck";
 import ImageUploader from "../../components/ImageUploader";
 import { auth } from "../../lib/firebase";
@@ -34,6 +33,10 @@ function PostManager() {
 
   const router = useRouter();
   const { slug } = router.query;
+
+  if (!auth.currentUser) {
+    return null;
+  }
 
   // @ts-ignore
   const postRef = doc(

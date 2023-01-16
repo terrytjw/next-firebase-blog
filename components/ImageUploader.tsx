@@ -18,7 +18,7 @@ export default function ImageUploader() {
     // Makes reference to the storage bucket location
     const fileRef = ref(
       storage,
-      `uploads/${auth.currentUser!.uid}/${Date.now()}.${extension}`
+      `uploads/${auth.currentUser!.uid}/${Date.now()}.${extension}` // using Date.now as a timestamp to create a unique file name for each upload
     );
     setUploading(true);
 
@@ -37,6 +37,7 @@ export default function ImageUploader() {
     // Get downloadURL AFTER task resolves (Note: this is not a native Promise)
     task
       .then((d) => getDownloadURL(fileRef))
+      // for this line below, it is a promise
       .then((url: any) => {
         setDownloadURL(url);
         setUploading(false);
